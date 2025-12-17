@@ -1,0 +1,2746 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Follow - Premium Reseller Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+    :root {
+        --primary: #28a745;
+        --secondary: #20c997;
+        --success: #198754;
+        --danger: #dc3545;
+        --warning: #ffc107;
+        --dark: #ffffff;
+        --light: #f8f9fa;
+        --text-primary: #000000;
+        --text-secondary: #333333;
+        --text-muted: #666666;
+    }
+   
+    * {
+        font-family: 'Hind Siliguri', sans-serif;
+        color: var(--text-primary);
+    }
+   
+    body {
+        background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+        color: var(--text-primary);
+        min-height: 100vh;
+    }
+   
+    /* সকল টেক্সট এলিমেন্টের জন্য কালার */
+    h1, h2, h3, h4, h5, h6, p, span, div, label, th, td, li, a, small, strong, em {
+        color: var(--text-primary) !important;
+    }
+   
+    .navbar {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+   
+    .navbar-brand {
+        font-weight: 700;
+        font-size: 1.8rem;
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+   
+    .nav-link {
+        color: var(--text-primary) !important;
+    }
+   
+    .nav-link:hover {
+        color: var(--primary) !important;
+    }
+   
+    .card {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+   
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+   
+    .card-title {
+        color: var(--text-primary) !important;
+        font-weight: 600;
+    }
+   
+    .card-text {
+        color: var(--text-secondary) !important;
+    }
+   
+    .card-header {
+        background: rgba(40, 167, 69, 0.1) !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+        color: var(--text-primary) !important;
+    }
+   
+    .card-body {
+        color: var(--text-primary) !important;
+    }
+   
+    .btn-primary {
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        border: none;
+        border-radius: 50px;
+        padding: 12px 30px;
+        font-weight: 600;
+        transition: all 0.3s;
+        color: white !important;
+    }
+   
+    .btn-primary:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+        color: white !important;
+    }
+   
+    .btn-success {
+        background: linear-gradient(45deg, var(--success), #20c997);
+        border: none;
+        border-radius: 50px;
+        padding: 12px 30px;
+        font-weight: 600;
+        color: white !important;
+    }
+   
+    .btn-warning {
+        background: linear-gradient(45deg, var(--warning), #ffca2c);
+        border: none;
+        border-radius: 50px;
+        padding: 12px 30px;
+        font-weight: 600;
+        color: white !important;
+    }
+   
+    .btn-danger {
+        background: linear-gradient(45deg, var(--danger), #e02a3b);
+        border: none;
+        border-radius: 50px;
+        padding: 12px 30px;
+        font-weight: 600;
+        color: white !important;
+    }
+   
+    .btn-secondary {
+        background: linear-gradient(45deg, #6c757d, #495057);
+        border: none;
+        border-radius: 50px;
+        padding: 10px 25px;
+        font-weight: 600;
+        color: white !important;
+    }
+   
+    .btn-outline-light {
+        color: var(--text-primary) !important;
+        border-color: var(--text-primary);
+    }
+   
+    .btn-outline-light:hover {
+        background-color: var(--text-primary);
+        color: white !important;
+    }
+   
+    .section-title {
+        position: relative;
+        margin-bottom: 3rem;
+        text-align: center;
+        color: var(--text-primary) !important;
+    }
+   
+    .section-title:after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        border-radius: 2px;
+    }
+   
+    .service-card {
+        height: 100%;
+        transition: all 0.3s;
+    }
+   
+    .service-card:hover {
+        transform: translateY(-10px);
+    }
+   
+    .category-card {
+        height: 180px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+   
+    .category-card:hover {
+        transform: translateY(-10px) scale(1.02);
+    }
+   
+    .category-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+   
+    .hidden {
+        display: none !important;
+    }
+   
+    .balance-card {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+   
+    .balance-card h4, .balance-card h2 {
+        color: white !important;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+   
+    .top-balance {
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        color: white !important;
+        padding: 8px 15px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-left: 15px;
+        box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
+    }
+   
+    .top-balance i {
+        margin-right: 5px;
+    }
+   
+    .copy-btn {
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+   
+    .copy-btn:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+   
+    .admin-panel {
+        background: rgba(255, 255, 255, 0.98);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        overflow-y: auto;
+        padding: 20px;
+    }
+   
+    .admin-header {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+   
+    .stats-card {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+   
+    .stats-number {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+        color: var(--text-primary) !important;
+    }
+   
+    .stats-card div:last-child {
+        color: var(--text-secondary) !important;
+    }
+   
+    .table-custom {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+   
+    .table-custom th {
+        background: rgba(40, 167, 69, 0.2);
+        border: none;
+        padding: 15px;
+        color: var(--text-primary) !important;
+        font-weight: 600;
+    }
+   
+    .table-custom td {
+        border: none;
+        padding: 15px;
+        color: var(--text-primary) !important;
+    }
+   
+    .table-custom tbody tr {
+        transition: all 0.3s;
+    }
+   
+    .table-custom tbody tr:hover {
+        background: rgba(40, 167, 69, 0.1);
+    }
+   
+    .form-control {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        padding: 12px 15px;
+        color: var(--text-primary) !important;
+    }
+   
+    .form-control:focus {
+        background: rgba(255, 255, 255, 1);
+        border-color: var(--primary);
+        box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+        color: var(--text-primary) !important;
+    }
+   
+    .form-control::placeholder {
+        color: var(--text-muted) !important;
+    }
+   
+    .form-label {
+        color: var(--text-primary) !important;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+   
+    .form-text {
+        color: var(--text-muted) !important;
+        font-size: 0.875rem;
+    }
+   
+    .modal-content {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+   
+    .modal-header {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        color: var(--text-primary) !important;
+    }
+   
+    .modal-title {
+        color: var(--text-primary) !important;
+        font-weight: 600;
+    }
+   
+    .modal-body {
+        color: var(--text-primary) !important;
+    }
+   
+    .modal-footer {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+   
+    .alert-custom {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+    }
+   
+    .alert-custom h5 {
+        color: var(--text-primary) !important;
+    }
+   
+    .alert-custom ol {
+        color: var(--text-secondary) !important;
+    }
+   
+    .alert-info {
+        background: rgba(23, 162, 184, 0.1) !important;
+        border-color: rgba(23, 162, 184, 0.3) !important;
+        color: var(--text-primary) !important;
+    }
+   
+    .hero-section {
+        padding: 100px 0;
+        text-align: center;
+    }
+   
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+   
+    .hero-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        color: var(--text-secondary) !important;
+    }
+   
+    .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+   
+    .user-welcome {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-primary) !important;
+    }
+   
+    .navbar-text {
+        color: var(--text-primary) !important;
+    }
+   
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+   
+    .back-btn {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 50px;
+        padding: 10px 20px;
+        transition: all 0.3s;
+        color: var(--text-primary) !important;
+    }
+   
+    .back-btn:hover {
+        background: rgba(40, 167, 69, 0.1);
+        transform: translateX(-5px);
+        color: var(--text-primary) !important;
+    }
+   
+    /* Badge colors */
+    .badge {
+        color: white !important;
+    }
+   
+    .bg-success {
+        background-color: var(--success) !important;
+    }
+   
+    .bg-warning {
+        background-color: var(--warning) !important;
+    }
+   
+    .bg-danger {
+        background-color: var(--danger) !important;
+    }
+   
+    /* Text colors */
+    .text-muted {
+        color: var(--text-muted) !important;
+    }
+   
+    .text-white {
+        color: white !important;
+    }
+   
+    .fw-bold {
+        color: var(--text-primary) !important;
+    }
+   
+    /* Small text */
+    small {
+        color: var(--text-muted) !important;
+    }
+   
+    /* List items */
+    li {
+        color: var(--text-secondary) !important;
+    }
+   
+    /* Code text */
+    code {
+        background: rgba(0, 0, 0, 0.1);
+        color: var(--text-primary) !important;
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+   
+    /* Close button */
+    .btn-close {
+        filter: none;
+    }
+   
+    .link-cell {
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    .link-cell:hover {
+        overflow: visible;
+        white-space: normal;
+        word-break: break-all;
+        background: white;
+        position: relative;
+        z-index: 10;
+    }
+    
+    .copy-link-btn {
+        cursor: pointer;
+        margin-left: 5px;
+        color: var(--primary);
+    }
+    
+    .copy-link-btn:hover {
+        color: var(--secondary);
+    }
+
+    .breadcrumb {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .breadcrumb-item a {
+        color: var(--primary);
+        text-decoration: none;
+    }
+
+    .breadcrumb-item.active {
+        color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.5rem;
+        }
+       
+        .admin-panel {
+            padding: 10px;
+        }
+       
+        .page-header {
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-start;
+        }
+       
+        .stats-number {
+            font-size: 1.5rem;
+        }
+        
+        .link-cell {
+            max-width: 150px;
+        }
+        
+        .category-card {
+            height: 150px;
+        }
+        
+        .top-balance {
+            font-size: 0.8rem;
+            padding: 6px 10px;
+            margin-left: 10px;
+        }
+    }
+
+    /* Additional fixes for specific elements */
+    .table-responsive {
+        color: var(--text-primary) !important;
+    }
+   
+    .nav-tabs .nav-link {
+        color: var(--text-primary) !important;
+    }
+   
+    .nav-tabs .nav-link.active {
+        color: var(--primary) !important;
+        background: rgba(40, 167, 69, 0.1) !important;
+        border-color: rgba(0, 0, 0, 0.2) !important;
+    }
+   
+    .tab-content {
+        color: var(--text-primary) !important;
+    }
+   
+    /* Ensure all text in admin panel is visible */
+    .admin-panel h1,
+    .admin-panel h2,
+    .admin-panel h3,
+    .admin-panel h4,
+    .admin-panel h5,
+    .admin-panel h6,
+    .admin-panel p,
+    .admin-panel span,
+    .admin-panel div,
+    .admin-panel label,
+    .admin-panel th,
+    .admin-panel td {
+        color: var(--text-primary) !important;
+    }
+    
+    /* Price display styles */
+    .price-per-unit {
+        font-size: 0.9rem;
+        color: var(--text-muted) !important;
+    }
+    
+    .price-per-thousand {
+        font-weight: 700;
+        color: var(--primary) !important;
+    }
+</style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" onclick="showHome()">
+                <i class="fas fa-rocket me-2"></i>AR Follow
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" onclick="showHome()">হোম</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showServices()">সার্ভিস</a>
+                    </li>
+                </ul>
+                <div class="navbar-nav">
+                    <div id="userSection">
+                        <button class="btn btn-outline-dark me-2" onclick="showLogin()">লগইন</button>
+                        <button class="btn btn-primary" onclick="showRegister()">রেজিস্টার</button>
+                    </div>
+                    <div id="loggedInSection" class="hidden">
+                        <span class="navbar-text user-welcome me-3" id="userWelcome"></span>
+                        <span class="top-balance hidden" id="topBalance">
+                            <i class="fas fa-wallet"></i> ব্যালেন্স: ৳<span id="balanceAmount">0</span>
+                        </span>
+                        <button class="btn btn-outline-dark btn-sm me-2" onclick="showUserPanel()">
+                            <i class="fas fa-user me-1"></i> ইউজার প্যানেল
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="logout()">
+                            <i class="fas fa-sign-out-alt me-1"></i> লগআউট
+                        </button>
+                    </div>
+                    <button class="btn btn-warning btn-sm ms-2 hidden" id="adminBtn" onclick="showAdminLoginModal()">
+                        <i class="fas fa-lock me-1"></i> অ্যাডমিন
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <!-- Home Section -->
+        <div id="homeSection">
+            <div class="hero-section">
+                <h1 class="hero-title">AR Follow এ স্বাগতম</h1>
+                <p class="hero-subtitle">প্রিমিয়াম কোয়ালিটির সকল ডিজিটাল সার্ভিস পাবেন এক স্থানে</p>
+                <button class="btn btn-primary btn-lg" onclick="showServices()">
+                    <i class="fas fa-rocket me-2"></i>শুরু করুন
+                </button>
+            </div>
+           
+            <div class="row mt-5">
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4>দ্রুত সার্ভিস</h4>
+                        <p>সবচেয়ে দ্রুত গতিতে আপনার অর্ডার সম্পন্ন করা হবে</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>সুরক্ষিত</h4>
+                        <p>আপনার তথ্য এবং ট্রানজেকশন সম্পূর্ণ সুরক্ষিত</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4>২৪/৭ সাপোর্ট</h4>
+                        <p>
+    যেকোনো সমস্যায় আমাদের সাথে যোগাযোগ করুন 
+    <a href="tel:+8801997631047" style="color: blue; font-weight: bold;">
+        01997631047
+    </a> /
+    <a href="https://wa.me/+8801997631047?text=Hi%20AR%20Follow,%20Please%20Help%20Me!!!" 
+       style="color: green; font-weight: bold;" target="_blank">
+        Whatsapp
+    </a>
+</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div id="servicesSection" class="hidden">
+            <div class="page-header">
+                <h2 class="section-title">আমাদের সার্ভিসসমূহ</h2>
+                <button class="btn btn-secondary back-btn" onclick="showHome()">
+                    <i class="fas fa-arrow-left me-2"></i> হোম এ ফিরে যান
+                </button>
+            </div>
+            
+            <!-- Breadcrumb Navigation -->
+            <nav aria-label="breadcrumb" class="mb-4 hidden" id="breadcrumbNav">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#" onclick="showAllCategories()">সকল ক্যাটাগরি</a></li>
+                    <li class="breadcrumb-item active" id="currentCategoryBreadcrumb"></li>
+                </ol>
+            </nav>
+            
+            <!-- Categories Container -->
+            <div class="row" id="categoriesContainer">
+                <!-- Categories will be loaded here -->
+            </div>
+            
+            <!-- Services Container -->
+            <div class="row hidden" id="categoryServicesContainer">
+                <!-- Services in category will be loaded here -->
+            </div>
+        </div>
+
+        <!-- User Panel -->
+        <div id="userPanel" class="hidden">
+            <div class="page-header">
+                <h2 class="section-title">ইউজার ড্যাশবোর্ড</h2>
+                <button class="btn btn-secondary back-btn" onclick="showHome()">
+                    <i class="fas fa-arrow-left me-2"></i> হোম এ ফিরে যান
+                </button>
+            </div>
+           
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="balance-card">
+                        <h4><i class="fas fa-wallet me-2"></i>আপনার ব্যালেন্স</h4>
+                        <h2 id="userBalance">৳ 0</h2>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card p-4">
+                        <h4><i class="fas fa-plus-circle me-2"></i>মানি এড করুন</h4>
+                        <button class="btn btn-primary w-100 mt-3" onclick="showAddMoney()">
+                            <i class="fas fa-money-bill-wave me-2"></i>ব্যালেন্স রিচার্জ
+                        </button>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0"><i class="fas fa-history me-2"></i>আপনার অর্ডারসমূহ</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-custom">
+                                    <thead>
+                                        <tr>
+                                            <th>অর্ডার আইডি</th>
+                                            <th>সার্ভিস</th>
+                                            <th>লিংক</th>
+                                            <th>পরিমাণ</th>
+                                            <th>মোট মূল্য</th>
+                                            <th>স্ট্যাটাস</th>
+                                            <th>তারিখ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="userOrdersTable">
+                                        <!-- User orders will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Money Section -->
+        <div id="addMoneySection" class="hidden">
+            <div class="page-header">
+                <h2 class="section-title">ব্যালেন্স রিচার্জ</h2>
+                <button class="btn btn-secondary back-btn" onclick="showUserPanel()">
+                    <i class="fas fa-arrow-left me-2"></i> ইউজার প্যানেলে ফিরে যান
+                </button>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0"><i class="fas fa-money-bill-wave me-2"></i>ব্যালেন্স রিচার্জ</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-custom">
+                                <h5><i class="fas fa-info-circle me-2"></i>পেমেন্ট নির্দেশাবলী:</h5>
+                                <ol class="mb-0 mt-2">
+                                    <li>নিচের বিকাশ নাম্বারে টাকা সেন্ড মানি করুন</li>
+                                    <li>টাকা পাঠানোর পর নিচের ফর্মটি পূরণ করুন</li>
+                                    <li>আপনার ট্রানজেকশন আইডি দিন (Reference: 1A2B3C4D)</li>
+                                    <li>অ্যাডমিন আপনার পেমেন্ট ভেরিফাই করার পর ব্যালেন্স যোগ হবে</li>
+                                </ol>
+                            </div>
+                           
+                            <div class="alert alert-info mt-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>বিকাশ নাম্বার: <span class="fs-5">01997631047</span></strong>
+                                        <p class="mb-0 small">(সেন্ড মানি করুন, ক্যাশ আউট করবেন না)</p>
+                                    </div>
+                                    <button class="btn btn-outline-dark copy-btn" onclick="copyBkashNumber()">
+                                        <i class="fas fa-copy me-1"></i> কপি করুন
+                                    </button>
+                                </div>
+                            </div>
+                           
+                            <form id="addMoneyForm">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">আপনার বিকাশ নাম্বার</label>
+                                        <input type="text" class="form-control" id="userBkash" required placeholder="01XXXXXXXXX">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">টাকার পরিমাণ</label>
+                                        <input type="number" class="form-control" id="addAmount" min="10" required placeholder="টাকার পরিমাণ">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">ট্রানজেকশন আইডি</label>
+                                    <input type="text" class="form-control" id="transactionId" required placeholder="1A2B3C4D">
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 py-3">
+                                    <i class="fas fa-paper-plane me-2"></i>পেমেন্ট সাবমিট করুন
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Form -->
+        <div id="orderSection" class="hidden">
+            <div class="page-header">
+                <h2 class="section-title">সার্ভিস অর্ডার</h2>
+                <button class="btn btn-secondary back-btn" onclick="showServices()">
+                    <i class="fas fa-arrow-left me-2"></i> সার্ভিসে ফিরে যান
+                </button>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0" id="orderServiceName"></h4>
+                        </div>
+                        <div class="card-body">
+                            <form id="orderForm">
+                                <div class="mb-3">
+                                    <label class="form-label">সার্ভিস লিংক</label>
+                                    <input type="text" class="form-control" id="serviceLink" required placeholder="যেকোনো লিংক দিন (বাংলা ছাড়া)">
+                                    <div class="form-text" id="linkHelper">
+                                        যেকোনো লিংক দিন (বাংলা বাদে)
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">পরিমাণ</label>
+                                    <input type="number" class="form-control" id="serviceQuantity"
+                                           min="1" required oninput="calculatePrice()">
+                                    <div class="form-text">সর্বনিম্ন: <span id="minQuantity">1</span>, সর্বোচ্চ: <span id="maxQuantity">1000</span></div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">মোট মূল্য</label>
+                                    <input type="text" class="form-control" id="totalPrice" readonly>
+                                    <div class="form-text" id="priceBreakdown"></div>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 py-3">
+                                    <i class="fas fa-shopping-cart me-2"></i>অর্ডার কনফার্ম করুন
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel (Completely Hidden - Only accessible via secret login) -->
+    <div id="adminPanel" class="admin-panel hidden">
+        <div class="container">
+            <div class="admin-header d-flex justify-content-between align-items-center">
+                <h2 class="mb-0">
+                    <i class="fas fa-crown me-2"></i>AR Follow - অ্যাডমিন প্যানেল
+                </h2>
+                <div>
+                    <button class="btn btn-warning me-2" onclick="refreshAdminData()">
+                        <i class="fas fa-sync-alt me-1"></i> রিফ্রেশ
+                    </button>
+                    <button class="btn btn-danger" onclick="hideAdminPanel()">
+                        <i class="fas fa-times me-1"></i> বন্ধ করুন
+                    </button>
+                </div>
+            </div>
+           
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <div class="stats-number" id="totalUsers">0</div>
+                        <div>মোট ইউজার</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <div class="stats-number" id="pendingPayments">0</div>
+                        <div>পেন্ডিং পেমেন্ট</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <div class="stats-number" id="totalOrders">0</div>
+                        <div>মোট অর্ডার</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <div class="stats-number" id="totalEarnings">৳ 0</div>
+                        <div>মোট আয়</div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs" id="adminTabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#usersTab">ইউজার ম্যানেজমেন্ট</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#categoriesTab">ক্যাটাগরি ম্যানেজমেন্ট</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#servicesTab">সার্ভিস ম্যানেজমেন্ট</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#paymentsTab">পেমেন্ট রিকুয়েস্ট</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#ordersTab">অর্ডার ম্যানেজমেন্ট</a>
+                        </li>
+                    </ul>
+                   
+                    <div class="tab-content mt-3">
+                        <div class="tab-pane fade show active" id="usersTab">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h4 class="mb-0">ইউজার তালিকা</h4>
+                                    <button class="btn btn-sm btn-primary" onclick="loadUsers()">
+                                        <i class="fas fa-sync-alt me-1"></i> রিফ্রেশ
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-custom">
+                                            <thead>
+                                                <tr>
+                                                    <th>ইউজারনেম</th>
+                                                    <th>ইমেইল</th>
+                                                    <th>ব্যালেন্স</th>
+                                                    <th>রেজিস্ট্রেশন তারিখ</th>
+                                                    <th>অ্যাকশন</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="usersTable">
+                                                <!-- Users will be loaded here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Categories Tab -->
+                        <div class="tab-pane fade" id="categoriesTab">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h4 class="mb-0">ক্যাটাগরি ম্যানেজমেন্ট</h4>
+                                    <button class="btn btn-sm btn-success" onclick="showAddCategoryModal()">
+                                        <i class="fas fa-plus me-1"></i> নতুন ক্যাটাগরি
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-custom">
+                                            <thead>
+                                                <tr>
+                                                    <th>ক্যাটাগরি নাম</th>
+                                                    <th>আইকন</th>
+                                                    <th>সার্ভিস সংখ্যা</th>
+                                                    <th>অ্যাকশন</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="categoriesTable">
+                                                <!-- Categories will be loaded here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="tab-pane fade" id="servicesTab">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h4 class="mb-0">সার্ভিস ম্যানেজমেন্ট</h4>
+                                    <button class="btn btn-sm btn-success" onclick="showAddServiceModal()">
+                                        <i class="fas fa-plus me-1"></i> নতুন সার্ভিস
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">ক্যাটাগরি নির্বাচন করুন</label>
+                                        <select class="form-control" id="serviceCategoryFilter" onchange="filterServicesByCategory()">
+                                            <option value="all">সকল ক্যাটাগরি</option>
+                                        </select>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-custom">
+                                            <thead>
+                                                <tr>
+                                                    <th>সার্ভিস নাম</th>
+                                                    <th>ক্যাটাগরি</th>
+                                                    <th>সার্ভিস কোড</th>
+                                                    <th>মূল্য (প্রতি ১০০০)</th>
+                                                    <th>সর্বনিম্ন</th>
+                                                    <th>সর্বোচ্চ</th>
+                                                    <th>প্রতি ইউনিট</th>
+                                                    <th>অ্যাকশন</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="servicesTable">
+                                                <!-- Services will be loaded here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="tab-pane fade" id="paymentsTab">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h4 class="mb-0">পেমেন্ট রিকুয়েস্ট</h4>
+                                    <button class="btn btn-sm btn-primary" onclick="loadPayments()">
+                                        <i class="fas fa-sync-alt me-1"></i> রিফ্রেশ
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-custom">
+                                            <thead>
+                                                <tr>
+                                                    <th>ইউজার</th>
+                                                    <th>বিকাশ নাম্বার</th>
+                                                    <th>পরিমাণ</th>
+                                                    <th>ট্রানজেকশন আইডি</th>
+                                                    <th>তারিখ</th>
+                                                    <th>স্ট্যাটাস</th>
+                                                    <th>অ্যাকশন</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="paymentsTable">
+                                                <!-- Payments will be loaded here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="tab-pane fade" id="ordersTab">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h4 class="mb-0">অর্ডার ম্যানেজমেন্ট</h4>
+                                    <button class="btn btn-sm btn-primary" onclick="loadOrders()">
+                                        <i class="fas fa-sync-alt me-1"></i> রিফ্রেশ
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-custom">
+                                            <thead>
+                                                <tr>
+                                                    <th>অর্ডার আইডি</th>
+                                                    <th>ইউজার</th>
+                                                    <th>সার্ভিস</th>
+                                                    <th>লিংক</th>
+                                                    <th>পরিমাণ</th>
+                                                    <th>মূল্য</th>
+                                                    <th>তারিখ</th>
+                                                    <th>স্ট্যাটাস</th>
+                                                    <th>অ্যাকশন</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="ordersTable">
+                                                <!-- Orders will be loaded here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modals -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-sign-in-alt me-2"></i>ইউজার লগইন</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label">ইউজারনেম</label>
+                            <input type="text" class="form-control" id="loginUsername" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">পাসওয়ার্ড</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 py-2">
+                            <i class="fas fa-sign-in-alt me-2"></i>লগইন করুন
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-user-plus me-2"></i>ইউজার রেজিস্ট্রেশন</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label class="form-label">ইউজারনেম</label>
+                            <input type="text" class="form-control" id="regUsername" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">ইমেইল</label>
+                            <input type="email" class="form-control" id="regEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">পাসওয়ার্ড</label>
+                            <input type="password" class="form-control" id="regPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 py-2">
+                            <i class="fas fa-user-plus me-2"></i>রেজিস্টার করুন
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="adminLoginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-lock me-2"></i>অ্যাডমিন লগইন</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="adminLoginForm">
+                        <div class="mb-3">
+                            <label class="form-label">ইমেইল</label>
+                            <input type="email" class="form-control" id="adminEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">পাসওয়ার্ড</label>
+                            <input type="password" class="form-control" id="adminPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-warning w-100 py-2">
+                            <i class="fas fa-lock me-2"></i>অ্যাডমিন লগইন
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Category Modal -->
+    <div class="modal fade" id="addCategoryModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCategoryModalTitle">ক্যাটাগরি যোগ করুন</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addCategoryForm">
+                        <input type="hidden" id="editCategoryId">
+                        <div class="mb-3">
+                            <label class="form-label">ক্যাটাগরি নাম</label>
+                            <input type="text" class="form-control" id="categoryName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">আইকন (FontAwesome ক্লাস)</label>
+                            <input type="text" class="form-control" id="categoryIcon" placeholder="fas fa-star" required>
+                            <div class="form-text">FontAwesome আইকন ক্লাস দিন, যেমন: fas fa-star, fas fa-heart</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 py-2">সেভ করুন</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Service Modal -->
+    <div class="modal fade" id="addServiceModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addServiceModalTitle">সার্ভিস যোগ করুন</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addServiceForm">
+                        <input type="hidden" id="editServiceId">
+                        <div class="mb-3">
+                            <label class="form-label">ক্যাটাগরি</label>
+                            <select class="form-control" id="serviceCategory" required>
+                                <option value="">ক্যাটাগরি নির্বাচন করুন</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">সার্ভিস নাম</label>
+                            <input type="text" class="form-control" id="serviceName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">সার্ভিস কোড</label>
+                            <input type="text" class="form-control" id="serviceCode" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">বর্ণনা</label>
+                            <textarea class="form-control" id="serviceDescription" rows="3"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">মূল্য (প্রতি ১০০০)</label>
+                                <input type="number" class="form-control" id="servicePricePer1000" min="0.0001" step="0.0001" required>
+                                <div class="form-text">প্রতি হাজারের মূল্য (যেমন: 61.00)</div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">সর্বনিম্ন পরিমাণ</label>
+                                <input type="number" class="form-control" id="serviceMin" min="1" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">সর্বোচ্চ পরিমাণ</label>
+                                <input type="number" class="form-control" id="serviceMax" min="1" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="alert alert-info">
+                                <strong>প্রতি ইউনিট মূল্য:</strong> <span id="perUnitPriceDisplay">0.0000</span> ৳<br>
+                                <small>এই মূল্য দিয়ে হিসাব করা হবে (প্রতি ১০০০ এর মূল্য / ১০০০)</small>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 py-2">সেভ করুন</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        import { getDatabase, ref, set, get, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+        // Your web app's Firebase configuration - UPDATED with correct database URL
+        const firebaseConfig = {
+            apiKey: "AIzaSyAXST6UjzWglLm2acl7YSNp7Dmm7JdXa2I",
+            authDomain: "apps-on-club.firebaseapp.com",
+            databaseURL: "https://apps-on-club-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "apps-on-club",
+            storageBucket: "apps-on-club.firebasestorage.app",
+            messagingSenderId: "169336372843",
+            appId: "1:169336372843:web:b204f9ab7ce3f32662fb2e",
+            measurementId: "G-S160CK6GX4"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Make database available globally
+        window.db = database;
+        window.dbRef = ref;
+        window.dbSet = set;
+        window.dbGet = get;
+        window.dbChild = child;
+        window.dbUpdate = update;
+        window.dbRemove = remove;
+        window.onValue = onValue;
+
+        // Initialize sample data
+        initializeSampleData();
+
+        async function initializeSampleData() {
+            try {
+                // Check if categories exist, if not create sample categories
+                const categoriesSnapshot = await get(ref(database, 'categories'));
+                if (!categoriesSnapshot.exists()) {
+                    const sampleCategories = {
+                        'category1': {
+                            id: 'category1',
+                            name: 'ফেসবুক সার্ভিস',
+                            icon: 'fab fa-facebook'
+                        },
+                        'category2': {
+                            id: 'category2',
+                            name: 'ইনস্টাগ্রাম সার্ভিস',
+                            icon: 'fab fa-instagram'
+                        },
+                        'category3': {
+                            id: 'category3',
+                            name: 'ইউটিউব সার্ভিস',
+                            icon: 'fab fa-youtube'
+                        }
+                    };
+                   
+                    await set(ref(database, 'categories'), sampleCategories);
+                }
+
+                // Check if services exist, if not create sample services
+                const servicesSnapshot = await get(ref(database, 'services'));
+                if (!servicesSnapshot.exists()) {
+                    const sampleServices = {
+                        'service1': {
+                            id: 'service1',
+                            categoryId: 'category1',
+                            name: 'ফেসবুক ফলোয়ার',
+                            code: 'FB-FOLLOW',
+                            description: 'হাই কোয়ালিটি ফেসবুক ফলোয়ার সার্ভিস',
+                            pricePer1000: 61.00,
+                            pricePerUnit: 0.061,
+                            min: 50,
+                            max: 10000
+                        },
+                        'service2': {
+                            id: 'service2',
+                            categoryId: 'category1',
+                            name: 'ফেসবুক লাইক',
+                            code: 'FB-LIKE',
+                            description: 'রিয়েল ফেসবুক লাইক সার্ভিস',
+                            pricePer1000: 33.89055,
+                            pricePerUnit: 0.03389055,
+                            min: 100,
+                            max: 5000
+                        },
+                        'service3': {
+                            id: 'service3',
+                            categoryId: 'category2',
+                            name: 'ইনস্টাগ্রাম লাইক',
+                            code: 'IG-LIKE',
+                            description: 'রিয়েল ইনস্টাগ্রাম লাইক সার্ভিস',
+                            pricePer1000: 45.75,
+                            pricePerUnit: 0.04575,
+                            min: 100,
+                            max: 5000
+                        },
+                        'service4': {
+                            id: 'service4',
+                            categoryId: 'category3',
+                            name: 'ইউটিউব ভিউ',
+                            code: 'YT-VIEW',
+                            description: 'হাই রিটেনশন ইউটিউব ভিউ সার্ভিস',
+                            pricePer1000: 120.50,
+                            pricePerUnit: 0.1205,
+                            min: 100,
+                            max: 10000
+                        }
+                    };
+                   
+                    await set(ref(database, 'services'), sampleServices);
+                }
+
+                // Initialize admin user
+                const usersSnapshot = await get(ref(database, 'users'));
+                if (usersSnapshot.exists()) {
+                    const users = usersSnapshot.val();
+                    if (!users.admin) {
+                        await set(ref(database, 'users/admin'), {
+                            username: 'admin',
+                            email: 'admin@gmail.com',
+                            password: 'ARadmin',
+                            balance: 0,
+                            isAdmin: true,
+                            joinedDate: new Date().toISOString()
+                        });
+                    }
+                } else {
+                    await set(ref(database, 'users/admin'), {
+                        username: 'admin',
+                        email: 'admin@gmail.com',
+                        password: 'ARadmin',
+                        balance: 0,
+                        isAdmin: true,
+                        joinedDate: new Date().toISOString()
+                    });
+                }
+            } catch (error) {
+                console.error('Error initializing sample data:', error);
+            }
+        }
+    </script>
+
+    <script>
+        // Formspree configuration - FIXED with your Formspree ID
+        const FORMSPREE_ORDER_URL = 'https://formspree.io/f/myzjvenn';
+        const FORMSPREE_PAYMENT_URL = 'https://formspree.io/f/myzjvenn';
+        
+        // Current user and admin state
+        let currentUser = null;
+        let currentAdmin = false;
+        let currentService = null;
+        let currentCategory = null;
+        let categories = [];
+        let services = [];
+        let users = [];
+        let payments = [];
+        let orders = [];
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthState();
+            loadCategories();
+            loadServices();
+            setupEventListeners();
+            
+            // Update per unit price display when admin adds service
+            document.getElementById('servicePricePer1000').addEventListener('input', function(e) {
+                const pricePer1000 = parseFloat(e.target.value) || 0;
+                const perUnitPrice = (pricePer1000 / 1000).toFixed(7);
+                document.getElementById('perUnitPriceDisplay').textContent = perUnitPrice;
+            });
+        });
+
+        function setupEventListeners() {
+            // Auth forms
+            document.getElementById('loginForm').addEventListener('submit', handleLogin);
+            document.getElementById('registerForm').addEventListener('submit', handleRegister);
+            document.getElementById('adminLoginForm').addEventListener('submit', handleAdminLogin);
+            document.getElementById('addMoneyForm').addEventListener('submit', handleAddMoney);
+            document.getElementById('orderForm').addEventListener('submit', handleOrder);
+            document.getElementById('addCategoryForm').addEventListener('submit', handleAddCategory);
+            document.getElementById('addServiceForm').addEventListener('submit', handleAddService);
+            
+            // Link validation helper
+            document.getElementById('serviceLink').addEventListener('input', function(e) {
+                const link = e.target.value.trim();
+                const helper = document.getElementById('linkHelper');
+                
+                // Check for Bengali characters
+                const bengaliRegex = /[\u0980-\u09FF]/;
+                if (bengaliRegex.test(link)) {
+                    helper.innerHTML = '<i class="fas fa-times text-danger"></i> বাংলা লেখা ব্যবহার করবেন না';
+                } else if (link) {
+                    helper.innerHTML = '<i class="fas fa-check text-success"></i> লিংক গ্রহণযোগ্য';
+                } else {
+                    helper.innerHTML = 'যেকোনো লিংক দিন (বাংলা বাদে)';
+                }
+            });
+        }
+
+        function checkAuthState() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            const admin = localStorage.getItem('currentAdmin') === 'true';
+           
+            if (user) {
+                currentUser = user;
+                showLoggedInState();
+                updateUserBalance();
+                loadUserOrders();
+            }
+           
+            if (admin) {
+                currentAdmin = true;
+                document.getElementById('adminBtn').classList.remove('hidden');
+            }
+        }
+
+        function showLoggedInState() {
+            document.getElementById('userSection').classList.add('hidden');
+            document.getElementById('loggedInSection').classList.remove('hidden');
+            document.getElementById('userWelcome').textContent = `স্বাগতম, ${currentUser.username}`;
+            document.getElementById('topBalance').classList.remove('hidden');
+           
+            // Show admin button only if user is admin
+            if (currentUser.isAdmin) {
+                document.getElementById('adminBtn').classList.remove('hidden');
+            }
+        }
+
+        function showHome() {
+            document.getElementById('homeSection').classList.remove('hidden');
+            document.getElementById('servicesSection').classList.add('hidden');
+            document.getElementById('userPanel').classList.add('hidden');
+            document.getElementById('addMoneySection').classList.add('hidden');
+            document.getElementById('orderSection').classList.add('hidden');
+        }
+
+        function showServices() {
+            document.getElementById('homeSection').classList.add('hidden');
+            document.getElementById('servicesSection').classList.remove('hidden');
+            document.getElementById('userPanel').classList.add('hidden');
+            document.getElementById('addMoneySection').classList.add('hidden');
+            document.getElementById('orderSection').classList.add('hidden');
+            
+            showAllCategories();
+        }
+
+        function showAllCategories() {
+            currentCategory = null;
+            document.getElementById('breadcrumbNav').classList.add('hidden');
+            document.getElementById('categoriesContainer').classList.remove('hidden');
+            document.getElementById('categoryServicesContainer').classList.add('hidden');
+            loadCategoriesForDisplay();
+        }
+
+        async function loadCategoriesForDisplay() {
+            try {
+                const snapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'categories'));
+                if (snapshot.exists()) {
+                    categories = snapshot.val();
+                    const container = document.getElementById('categoriesContainer');
+                    container.innerHTML = '';
+                   
+                    for (const id in categories) {
+                        const category = categories[id];
+                        
+                        // Count services in this category
+                        const servicesSnapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'services'));
+                        let serviceCount = 0;
+                        if (servicesSnapshot.exists()) {
+                            const allServices = servicesSnapshot.val();
+                            serviceCount = Object.values(allServices).filter(service => service.categoryId === id).length;
+                        }
+                        
+                        container.innerHTML += `
+                            <div class="col-md-4 mb-4">
+                                <div class="card category-card p-4" onclick="showCategoryServices('${id}')">
+                                    <div class="category-icon">
+                                        <i class="${category.icon}"></i>
+                                    </div>
+                                    <h4 class="card-title text-center">${category.name}</h4>
+                                    <p class="card-text text-center">${serviceCount} টি সার্ভিস</p>
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading categories:', error);
+            }
+        }
+
+        async function showCategoryServices(categoryId) {
+            currentCategory = categoryId;
+            const category = categories[categoryId];
+            
+            document.getElementById('categoriesContainer').classList.add('hidden');
+            document.getElementById('categoryServicesContainer').classList.remove('hidden');
+            document.getElementById('breadcrumbNav').classList.remove('hidden');
+            document.getElementById('currentCategoryBreadcrumb').textContent = category.name;
+            
+            const container = document.getElementById('categoryServicesContainer');
+            container.innerHTML = '';
+            
+            try {
+                const snapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'services'));
+                if (snapshot.exists()) {
+                    const allServices = snapshot.val();
+                    const categoryServices = Object.values(allServices).filter(service => service.categoryId === categoryId);
+                    
+                    if (categoryServices.length === 0) {
+                        container.innerHTML = `
+                            <div class="col-12">
+                                <div class="alert alert-info text-center">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    এই ক্যাটাগরিতে এখনো কোন সার্ভিস নেই।
+                                </div>
+                            </div>
+                        `;
+                        return;
+                    }
+                    
+                    categoryServices.forEach(service => {
+                        // Format price display
+                        const pricePer1000 = parseFloat(service.pricePer1000).toFixed(2);
+                        const pricePerUnit = parseFloat(service.pricePerUnit).toFixed(7);
+                        
+                        container.innerHTML += `
+                            <div class="col-md-4 mb-4">
+                                <div class="card service-card p-4">
+                                    <h5 class="card-title">${service.name}</h5>
+                                    <p class="card-text">${service.description}</p>
+                                    <div class="mb-2">
+                                        <small class="text-muted">সার্ভিস কোড: ${service.code}</small>
+                                    </div>
+                                    <p class="fw-bold mb-1">
+                                        <span class="price-per-thousand">৳${pricePer1000}</span> / প্রতি হাজার
+                                    </p>
+                                    <p class="price-per-unit mb-3">
+                                        (প্রতি ইউনিট: ৳${pricePerUnit})
+                                    </p>
+                                    <button class="btn btn-primary w-100" onclick="orderService('${service.id}')">
+                                        <i class="fas fa-shopping-cart me-2"></i>অর্ডার করুন
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading category services:', error);
+            }
+        }
+
+        function showUserPanel() {
+            if (!currentUser) {
+                showAlert('দুঃখিত! প্রথমে লগইন করুন।', 'error');
+                showLogin();
+                return;
+            }
+           
+            document.getElementById('homeSection').classList.add('hidden');
+            document.getElementById('servicesSection').classList.add('hidden');
+            document.getElementById('userPanel').classList.remove('hidden');
+            document.getElementById('addMoneySection').classList.add('hidden');
+            document.getElementById('orderSection').classList.add('hidden');
+           
+            updateUserBalance();
+            loadUserOrders();
+        }
+
+        function showAddMoney() {
+            document.getElementById('userPanel').classList.add('hidden');
+            document.getElementById('addMoneySection').classList.remove('hidden');
+        }
+
+        function showLogin() {
+            const modal = new bootstrap.Modal(document.getElementById('loginModal'));
+            modal.show();
+        }
+
+        function showRegister() {
+            const modal = new bootstrap.Modal(document.getElementById('registerModal'));
+            modal.show();
+        }
+
+        function showAdminLoginModal() {
+            const modal = new bootstrap.Modal(document.getElementById('adminLoginModal'));
+            modal.show();
+        }
+
+        function showAddCategoryModal() {
+            document.getElementById('addCategoryModalTitle').textContent = 'ক্যাটাগরি যোগ করুন';
+            document.getElementById('editCategoryId').value = '';
+            document.getElementById('addCategoryForm').reset();
+            const modal = new bootstrap.Modal(document.getElementById('addCategoryModal'));
+            modal.show();
+        }
+
+        function showAddServiceModal() {
+            document.getElementById('addServiceModalTitle').textContent = 'সার্ভিস যোগ করুন';
+            document.getElementById('editServiceId').value = '';
+            document.getElementById('addServiceForm').reset();
+            populateCategorySelect();
+            const modal = new bootstrap.Modal(document.getElementById('addServiceModal'));
+            modal.show();
+        }
+
+        async function populateCategorySelect() {
+            try {
+                const snapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'categories'));
+                const select = document.getElementById('serviceCategory');
+                select.innerHTML = '<option value="">ক্যাটাগরি নির্বাচন করুন</option>';
+                
+                if (snapshot.exists()) {
+                    const cats = snapshot.val();
+                    for (const id in cats) {
+                        const category = cats[id];
+                        select.innerHTML += `<option value="${id}">${category.name}</option>`;
+                    }
+                }
+            } catch (error) {
+                console.error('Error populating category select:', error);
+            }
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const snapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'users'));
+                if (snapshot.exists()) {
+                    const users = snapshot.val();
+                    const user = Object.values(users).find(u => u.username === username && u.password === password);
+                   
+                    if (user) {
+                        currentUser = user;
+                        localStorage.setItem('currentUser', JSON.stringify(user));
+                       
+                        // Set admin flag if user is admin
+                        if (user.isAdmin) {
+                            currentAdmin = true;
+                            localStorage.setItem('currentAdmin', 'true');
+                            document.getElementById('adminBtn').classList.remove('hidden');
+                        }
+                       
+                        showLoggedInState();
+                        bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
+                        showAlert('লগইন সফল!', 'success');
+                        showHome();
+                    } else {
+                        showAlert('ইউজারনেম বা পাসওয়ার্ড ভুল!', 'error');
+                    }
+                } else {
+                    showAlert('কোন ইউজার খুঁজে পাওয়া যায়নি!', 'error');
+                }
+            } catch (error) {
+                showAlert('লগইন ব্যর্থ!', 'error');
+            }
+        }
+
+        async function handleRegister(e) {
+            e.preventDefault();
+            const username = document.getElementById('regUsername').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+
+            try {
+                // Check if username already exists
+                const snapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'users'));
+                if (snapshot.exists()) {
+                    const users = snapshot.val();
+                    if (users[username]) {
+                        showAlert('এই ইউজারনেমটি ইতিমধ্যে নেওয়া হয়েছে!', 'error');
+                        return;
+                    }
+                }
+
+                const userRef = window.dbRef(window.db, 'users/' + username);
+                await window.dbSet(userRef, {
+                    username: username,
+                    email: email,
+                    password: password,
+                    balance: 0,
+                    isAdmin: false,
+                    joinedDate: new Date().toISOString()
+                });
+
+                bootstrap.Modal.getInstance(document.getElementById('registerModal')).hide();
+                showAlert('রেজিস্ট্রেশন সফল! এখন লগইন করুন।', 'success');
+            } catch (error) {
+                showAlert('রেজিস্ট্রেশন ব্যর্থ!', 'error');
+            }
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+           
+            if (email === 'admin@gmail.com' && password === 'ARadmin') {
+                currentAdmin = true;
+                localStorage.setItem('currentAdmin', 'true');
+                bootstrap.Modal.getInstance(document.getElementById('adminLoginModal')).hide();
+                document.getElementById('adminBtn').classList.remove('hidden');
+                showAdminPanel();
+                showAlert('অ্যাডমিন লগইন সফল!', 'success');
+            } else {
+                showAlert('ইমেইল বা পাসওয়ার্ড ভুল!', 'error');
+            }
+        }
+
+        function showAdminPanel() {
+            document.getElementById('adminPanel').classList.remove('hidden');
+            loadAdminData();
+        }
+
+        function hideAdminPanel() {
+            document.getElementById('adminPanel').classList.add('hidden');
+        }
+
+        function refreshAdminData() {
+            loadAdminData();
+            showAlert('ডেটা রিফ্রেশ করা হয়েছে!', 'success');
+        }
+
+        async function loadAdminData() {
+            await loadUsers();
+            await loadCategoriesForAdmin();
+            await loadServicesForAdmin();
+            await loadPayments();
+            await loadOrders();
+            updateAdminStats();
+        }
+
+        async function loadUsers() {
+            try {
+                const snapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'users'));
+                if (snapshot.exists()) {
+                    users = snapshot.val();
+                    const usersTable = document.getElementById('usersTable');
+                    usersTable.innerHTML = '';
+                   
+                    for (const username in users) {
+                        const user = users[username];
+                        // Don't show admin user in the list
+                        if (user.isAdmin) continue;
+                       
+                        usersTable.innerHTML += `
+                            <tr>
+                                <td>${user.username}</td>
+                                <td>${user.email}</td>
+                                <td>৳ ${(user.balance || 0).toFixed(2)}</td>
+                                <td>${new Date(user.joinedDate).toLocaleDateString('bn-BD')}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteUser('${user.username}')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading users:', error);
+            }
+        }
+
+        async function loadCategoriesForAdmin() {
+            try {
+                const snapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'categories'));
+                if (snapshot.exists()) {
+                    categories = snapshot.val();
+                    const categoriesTable = document.getElementById('categoriesTable');
+                    categoriesTable.innerHTML = '';
+                   
+                    for (const id in categories) {
+                        const category = categories[id];
+                        
+                        // Count services in this category
+                        const servicesSnapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'services'));
+                        let serviceCount = 0;
+                        if (servicesSnapshot.exists()) {
+                            const allServices = servicesSnapshot.val();
+                            serviceCount = Object.values(allServices).filter(service => service.categoryId === id).length;
+                        }
+                       
+                        categoriesTable.innerHTML += `
+                            <tr>
+                                <td>${category.name}</td>
+                                <td><i class="${category.icon}"></i></td>
+                                <td>${serviceCount}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning me-1" onclick="editCategory('${id}')">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteCategory('${id}')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading categories:', error);
+            }
+        }
+
+        async function loadServicesForAdmin() {
+            try {
+                const categoriesSnapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'categories'));
+                const categoriesObj = categoriesSnapshot.exists() ? categoriesSnapshot.val() : {};
+                
+                const snapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'services'));
+                if (snapshot.exists()) {
+                    services = snapshot.val();
+                    const servicesTable = document.getElementById('servicesTable');
+                    servicesTable.innerHTML = '';
+                    
+                    // Populate category filter
+                    const categoryFilter = document.getElementById('serviceCategoryFilter');
+                    categoryFilter.innerHTML = '<option value="all">সকল ক্যাটাগরি</option>';
+                    for (const id in categoriesObj) {
+                        categoryFilter.innerHTML += `<option value="${id}">${categoriesObj[id].name}</option>`;
+                    }
+                   
+                    for (const id in services) {
+                        const service = services[id];
+                        const categoryName = categoriesObj[service.categoryId] ? categoriesObj[service.categoryId].name : 'N/A';
+                        const pricePer1000 = parseFloat(service.pricePer1000 || service.price || 0).toFixed(2);
+                        const pricePerUnit = parseFloat(service.pricePerUnit || (service.pricePer1000 / 1000) || 0).toFixed(7);
+                        
+                        servicesTable.innerHTML += `
+                            <tr data-category="${service.categoryId}">
+                                <td>${service.name}</td>
+                                <td>${categoryName}</td>
+                                <td>${service.code}</td>
+                                <td>৳ ${pricePer1000}</td>
+                                <td>${service.min}</td>
+                                <td>${service.max}</td>
+                                <td>৳ ${pricePerUnit}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning me-1" onclick="editService('${id}')">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteService('${id}')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading services:', error);
+            }
+        }
+
+        function filterServicesByCategory() {
+            const categoryId = document.getElementById('serviceCategoryFilter').value;
+            const rows = document.querySelectorAll('#servicesTable tr[data-category]');
+            
+            rows.forEach(row => {
+                if (categoryId === 'all' || row.getAttribute('data-category') === categoryId) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        async function loadPayments() {
+            try {
+                const snapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'payments'));
+                if (snapshot.exists()) {
+                    payments = snapshot.val();
+                    const paymentsTable = document.getElementById('paymentsTable');
+                    paymentsTable.innerHTML = '';
+                   
+                    let pendingCount = 0;
+                   
+                    for (const id in payments) {
+                        const payment = payments[id];
+                        if (payment.status === 'pending') pendingCount++;
+                       
+                        paymentsTable.innerHTML += `
+                            <tr>
+                                <td>${payment.userId}</td>
+                                <td>${payment.userBkash}</td>
+                                <td>৳ ${payment.amount}</td>
+                                <td>${payment.transactionId}</td>
+                                <td>${new Date(payment.submitDate).toLocaleDateString('bn-BD')}</td>
+                                <td>
+                                    <span class="badge ${payment.status === 'approved' ? 'bg-success' : payment.status === 'rejected' ? 'bg-danger' : 'bg-warning'}">
+                                        ${payment.status === 'approved' ? 'অনুমোদিত' : payment.status === 'rejected' ? 'বাতিল' : 'পেন্ডিং'}
+                                    </span>
+                                </td>
+                                <td>
+                                    ${payment.status === 'pending' ? `
+                                    <button class="btn btn-sm btn-success me-1" onclick="approvePayment('${id}')">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" onclick="rejectPayment('${id}')">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                    ` : ''}
+                                </td>
+                            </tr>
+                        `;
+                    }
+                   
+                    document.getElementById('pendingPayments').textContent = pendingCount;
+                }
+            } catch (error) {
+                console.error('Error loading payments:', error);
+            }
+        }
+
+        async function loadOrders() {
+            try {
+                const snapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'orders'));
+                if (snapshot.exists()) {
+                    orders = snapshot.val();
+                    const ordersTable = document.getElementById('ordersTable');
+                    ordersTable.innerHTML = '';
+                   
+                    let totalEarnings = 0;
+                   
+                    for (const id in orders) {
+                        const order = orders[id];
+                        if (order.status === 'completed') {
+                            totalEarnings += parseFloat(order.total) || 0;
+                        }
+                       
+                        ordersTable.innerHTML += `
+                            <tr>
+                                <td>${order.id}</td>
+                                <td>${order.userId}</td>
+                                <td>${order.serviceName}</td>
+                                <td class="link-cell">
+                                    ${order.link}
+                                    <span class="copy-link-btn" onclick="copyToClipboard('${order.link}')">
+                                        <i class="fas fa-copy"></i>
+                                    </span>
+                                </td>
+                                <td>${order.quantity}</td>
+                                <td>৳ ${parseFloat(order.total).toFixed(2)}</td>
+                                <td>${new Date(order.orderDate).toLocaleDateString('bn-BD')}</td>
+                                <td>
+                                    <span class="badge ${order.status === 'completed' ? 'bg-success' : order.status === 'cancelled' ? 'bg-danger' : 'bg-warning'}">
+                                        ${order.status === 'completed' ? 'সম্পন্ন' : order.status === 'cancelled' ? 'বাতিল' : 'পেন্ডিং'}
+                                    </span>
+                                </td>
+                                <td>
+                                    ${order.status === 'pending' ? `
+                                    <button class="btn btn-sm btn-success me-1" onclick="completeOrder('${id}')">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" onclick="cancelOrder('${id}')">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                    ` : ''}
+                                </td>
+                            </tr>
+                        `;
+                    }
+                   
+                    document.getElementById('totalOrders').textContent = Object.keys(orders).length;
+                    document.getElementById('totalEarnings').textContent = `৳ ${totalEarnings.toFixed(2)}`;
+                }
+            } catch (error) {
+                console.error('Error loading orders:', error);
+            }
+        }
+
+        function updateAdminStats() {
+            const userCount = Object.keys(users).filter(username => !users[username].isAdmin).length;
+            document.getElementById('totalUsers').textContent = userCount;
+        }
+
+        async function loadCategories() {
+            try {
+                const snapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'categories'));
+                if (snapshot.exists()) {
+                    categories = snapshot.val();
+                }
+            } catch (error) {
+                console.error('Error loading categories:', error);
+            }
+        }
+
+        async function loadServices() {
+            try {
+                const snapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'services'));
+                if (snapshot.exists()) {
+                    services = snapshot.val();
+                }
+            } catch (error) {
+                console.error('Error loading services:', error);
+            }
+        }
+
+        function orderService(serviceId) {
+            if (!currentUser) {
+                showAlert('দুঃখিত! প্রথমে লগইন করুন।', 'error');
+                showLogin();
+                return;
+            }
+           
+            currentService = services[serviceId];
+           
+            document.getElementById('orderServiceName').textContent = currentService.name;
+            document.getElementById('minQuantity').textContent = currentService.min;
+            document.getElementById('maxQuantity').textContent = currentService.max;
+            document.getElementById('serviceQuantity').min = currentService.min;
+            document.getElementById('serviceQuantity').max = currentService.max;
+            document.getElementById('serviceQuantity').value = currentService.min;
+           
+            document.getElementById('homeSection').classList.add('hidden');
+            document.getElementById('servicesSection').classList.add('hidden');
+            document.getElementById('userPanel').classList.add('hidden');
+            document.getElementById('addMoneySection').classList.add('hidden');
+            document.getElementById('orderSection').classList.remove('hidden');
+           
+            calculatePrice();
+        }
+
+        function calculatePrice() {
+            if (currentService) {
+                const quantity = parseInt(document.getElementById('serviceQuantity').value) || 0;
+                const pricePerUnit = parseFloat(currentService.pricePerUnit || (currentService.pricePer1000 / 1000) || 0);
+                const total = quantity * pricePerUnit;
+                
+                // Format with 7 decimal places
+                const formattedTotal = total.toFixed(7);
+                
+                document.getElementById('totalPrice').value = `৳${formattedTotal}`;
+                
+                // Show price breakdown
+                const pricePer1000 = parseFloat(currentService.pricePer1000 || currentService.price || 0).toFixed(2);
+                const perUnit = pricePerUnit.toFixed(7);
+                
+                document.getElementById('priceBreakdown').innerHTML = `
+                    <small>
+                        প্রতি হাজার: ৳${pricePer1000} | 
+                        প্রতি ইউনিট: ৳${perUnit} | 
+                        ${quantity} × ৳${perUnit} = ৳${formattedTotal}
+                    </small>
+                `;
+            }
+        }
+
+        // FIXED: Link validation function - accept any link except Bengali
+        function validateLink(link) {
+            // Trim the link
+            link = link.trim();
+            
+            // If empty, return error
+            if (!link) {
+                return { valid: false, error: 'লিংক দিন!' };
+            }
+            
+            // Check for Bengali characters
+            const bengaliRegex = /[\u0980-\u09FF]/;
+            if (bengaliRegex.test(link)) {
+                return { valid: false, error: 'বাংলা লেখা ব্যবহার করবেন না!' };
+            }
+            
+            // Accept any text (no URL validation)
+            return { valid: true, link: link };
+        }
+
+        // FIXED: handleOrder function with per-unit calculation
+        async function handleOrder(e) {
+            e.preventDefault();
+            if (!currentUser) {
+                showAlert('দুঃখিত! প্রথমে লগইন করুন।', 'error');
+                return;
+            }
+
+            const rawLink = document.getElementById('serviceLink').value;
+            const quantity = parseInt(document.getElementById('serviceQuantity').value);
+            
+            // Get price per unit
+            const pricePerUnit = parseFloat(currentService.pricePerUnit || (currentService.pricePer1000 / 1000) || 0);
+            const total = quantity * pricePerUnit;
+
+            // Validate link
+            const linkValidation = validateLink(rawLink);
+            if (!linkValidation.valid) {
+                showAlert(linkValidation.error, 'error');
+                return;
+            }
+
+            const finalLink = linkValidation.link;
+
+            // Check balance with 7 decimal precision
+            if (parseFloat(currentUser.balance) < parseFloat(total.toFixed(7))) {
+                showAlert('ব্যালেন্স অপর্যাপ্ত! প্রথমে মানি এড করুন।', 'error');
+                showAddMoney();
+                return;
+            }
+
+            try {
+                const orderId = 'ORD' + Date.now();
+                const orderRef = window.dbRef(window.db, 'orders/' + orderId);
+                const orderData = {
+                    id: orderId,
+                    userId: currentUser.username,
+                    userEmail: currentUser.email,
+                    serviceId: currentService.id,
+                    serviceName: currentService.name,
+                    link: finalLink,
+                    quantity: quantity,
+                    total: total.toFixed(7),
+                    status: 'pending',
+                    orderDate: new Date().toISOString()
+                };
+                
+                await window.dbSet(orderRef, orderData);
+
+                // Deduct from user balance with precision
+                const newBalance = parseFloat(currentUser.balance) - parseFloat(total.toFixed(7));
+                const userRef = window.dbRef(window.db, 'users/' + currentUser.username);
+                await window.dbUpdate(userRef, {
+                    balance: newBalance.toFixed(7)
+                });
+
+                // Update current user balance locally
+                currentUser.balance = newBalance.toFixed(7);
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                updateUserBalance();
+                updateTopBalance();
+
+                // Send email notification via Formspree
+                await sendOrderNotification(orderData);
+
+                showAlert('অর্ডার সফলভাবে দেওয়া হয়েছে!', 'success');
+                document.getElementById('orderForm').reset();
+                showUserPanel();
+            } catch (error) {
+                console.error('Order error:', error);
+                showAlert('অর্ডার ব্যর্থ!', 'error');
+            }
+        }
+
+        // FIXED: Formspree email notification function
+        async function sendOrderNotification(orderData) {
+            try {
+                const response = await fetch(FORMSPREE_ORDER_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _subject: `📦 নতুন অর্ডার - AR Follow (${orderData.id})`,
+                        order_id: orderData.id,
+                        user: orderData.userId,
+                        email: orderData.userEmail,
+                        service: orderData.serviceName,
+                        link: orderData.link,
+                        quantity: orderData.quantity,
+                        total: `৳${parseFloat(orderData.total).toFixed(2)}`,
+                        per_unit: `৳${(parseFloat(orderData.total) / orderData.quantity).toFixed(7)}`,
+                        date: new Date(orderData.orderDate).toLocaleString('bn-BD'),
+                        status: orderData.status,
+                        message: `নতুন অর্ডার পেয়েছেন!
+                        
+অর্ডার আইডি: ${orderData.id}
+ইউজার: ${orderData.userId} (${orderData.userEmail})
+সার্ভিস: ${orderData.serviceName}
+লিংক: ${orderData.link}
+পরিমাণ: ${orderData.quantity}
+মোট: ৳${parseFloat(orderData.total).toFixed(2)}
+প্রতি ইউনিট: ৳${(parseFloat(orderData.total) / orderData.quantity).toFixed(7)}
+তারিখ: ${new Date(orderData.orderDate).toLocaleString('bn-BD')}
+
+অ্যাডমিন প্যানেলে লগইন করুন অর্ডার ম্যানেজ করতে।`
+                    })
+                });
+
+                if (response.ok) {
+                    console.log('Order email notification sent successfully');
+                } else {
+                    console.error('Failed to send order notification');
+                }
+            } catch (error) {
+                console.error('Error sending order notification:', error);
+            }
+        }
+
+        // FIXED: handleAddMoney function with Formspree notification
+        async function handleAddMoney(e) {
+            e.preventDefault();
+            if (!currentUser) {
+                showAlert('দুঃখিত! প্রথমে লগইন করুন।', 'error');
+                return;
+            }
+
+            const userBkash = document.getElementById('userBkash').value.trim();
+            const amount = parseInt(document.getElementById('addAmount').value);
+            const transactionId = document.getElementById('transactionId').value.trim();
+
+            if (!userBkash || !amount || !transactionId) {
+                showAlert('সব তথ্য দিন!', 'error');
+                return;
+            }
+
+            if (amount < 10) {
+                showAlert('সর্বনিম্ন ৳১০ রিচার্জ করতে পারবেন!', 'error');
+                return;
+            }
+
+            try {
+                const paymentId = 'PAY' + Date.now();
+                const paymentData = {
+                    id: paymentId,
+                    userId: currentUser.username,
+                    userEmail: currentUser.email,
+                    userBkash: userBkash,
+                    amount: amount,
+                    transactionId: transactionId,
+                    status: 'pending',
+                    submitDate: new Date().toISOString()
+                };
+                
+                const paymentRef = window.dbRef(window.db, 'payments/' + paymentId);
+                await window.dbSet(paymentRef, paymentData);
+
+                // Send email notification via Formspree
+                await sendPaymentNotification(paymentData);
+
+                showAlert('পেমেন্ট রিকুয়েস্ট সাবমিট করা হয়েছে! অ্যাডমিন অনুমোদনের পর ব্যালেন্স যোগ হবে।', 'success');
+                document.getElementById('addMoneyForm').reset();
+                showUserPanel();
+            } catch (error) {
+                console.error('Payment error:', error);
+                showAlert('পেমেন্ট সাবমিশন ব্যর্থ!', 'error');
+            }
+        }
+
+        // FIXED: Formspree payment notification function
+        async function sendPaymentNotification(paymentData) {
+            try {
+                const response = await fetch(FORMSPREE_PAYMENT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _subject: `💰 নতুন পেমেন্ট রিকুয়েস্ট - AR Follow (${paymentData.id})`,
+                        payment_id: paymentData.id,
+                        user: paymentData.userId,
+                        email: paymentData.userEmail,
+                        bkash: paymentData.userBkash,
+                        amount: `৳${paymentData.amount}`,
+                        transaction_id: paymentData.transactionId,
+                        date: new Date(paymentData.submitDate).toLocaleString('bn-BD'),
+                        status: paymentData.status,
+                        message: `নতুন পেমেন্ট রিকুয়েস্ট পেয়েছেন!
+                        
+পেমেন্ট আইডি: ${paymentData.id}
+ইউজার: ${paymentData.userId} (${paymentData.userEmail})
+বিকাশ: ${paymentData.userBkash}
+পরিমাণ: ৳${paymentData.amount}
+ট্রানজেকশন: ${paymentData.transactionId}
+তারিখ: ${new Date(paymentData.submitDate).toLocaleString('bn-BD')}
+
+অ্যাডমিন প্যানেলে লগইন করুন পেমেন্ট ভেরিফাই করতে।`
+                    })
+                });
+
+                if (response.ok) {
+                    console.log('Payment email notification sent successfully');
+                } else {
+                    console.error('Failed to send payment notification');
+                }
+            } catch (error) {
+                console.error('Error sending payment notification:', error);
+            }
+        }
+
+        async function handleAddCategory(e) {
+            e.preventDefault();
+           
+            const categoryId = document.getElementById('editCategoryId').value || 'category' + Date.now();
+            const categoryData = {
+                id: categoryId,
+                name: document.getElementById('categoryName').value,
+                icon: document.getElementById('categoryIcon').value
+            };
+           
+            try {
+                await window.dbSet(window.dbRef(window.db, 'categories/' + categoryId), categoryData);
+                bootstrap.Modal.getInstance(document.getElementById('addCategoryModal')).hide();
+                showAlert('ক্যাটাগরি সফলভাবে সংরক্ষণ করা হয়েছে!', 'success');
+                loadCategoriesForAdmin();
+                loadCategoriesForDisplay();
+            } catch (error) {
+                showAlert('ক্যাটাগরি সংরক্ষণ ব্যর্থ!', 'error');
+            }
+        }
+
+        async function handleAddService(e) {
+            e.preventDefault();
+           
+            const serviceId = document.getElementById('editServiceId').value || 'service' + Date.now();
+            const pricePer1000 = parseFloat(document.getElementById('servicePricePer1000').value);
+            const pricePerUnit = (pricePer1000 / 1000).toFixed(7);
+            
+            const serviceData = {
+                id: serviceId,
+                categoryId: document.getElementById('serviceCategory').value,
+                name: document.getElementById('serviceName').value,
+                code: document.getElementById('serviceCode').value,
+                description: document.getElementById('serviceDescription').value,
+                pricePer1000: pricePer1000,
+                pricePerUnit: parseFloat(pricePerUnit),
+                min: parseInt(document.getElementById('serviceMin').value),
+                max: parseInt(document.getElementById('serviceMax').value)
+            };
+           
+            try {
+                await window.dbSet(window.dbRef(window.db, 'services/' + serviceId), serviceData);
+                bootstrap.Modal.getInstance(document.getElementById('addServiceModal')).hide();
+                showAlert('সার্ভিস সফলভাবে সংরক্ষণ করা হয়েছে!', 'success');
+                loadServicesForAdmin();
+            } catch (error) {
+                showAlert('সার্ভিস সংরক্ষণ ব্যর্থ!', 'error');
+            }
+        }
+
+        function editCategory(categoryId) {
+            const category = categories[categoryId];
+            document.getElementById('addCategoryModalTitle').textContent = 'ক্যাটাগরি এডিট করুন';
+            document.getElementById('editCategoryId').value = categoryId;
+            document.getElementById('categoryName').value = category.name;
+            document.getElementById('categoryIcon').value = category.icon;
+           
+            const modal = new bootstrap.Modal(document.getElementById('addCategoryModal'));
+            modal.show();
+        }
+
+        async function editService(serviceId) {
+            try {
+                // Load categories first
+                await populateCategorySelect();
+                
+                const service = services[serviceId];
+                document.getElementById('addServiceModalTitle').textContent = 'সার্ভিস এডিট করুন';
+                document.getElementById('editServiceId').value = serviceId;
+                document.getElementById('serviceCategory').value = service.categoryId;
+                document.getElementById('serviceName').value = service.name;
+                document.getElementById('serviceCode').value = service.code;
+                document.getElementById('serviceDescription').value = service.description || '';
+                document.getElementById('servicePricePer1000').value = service.pricePer1000 || service.price || 0;
+                document.getElementById('serviceMin').value = service.min;
+                document.getElementById('serviceMax').value = service.max;
+                
+                // Update per unit price display
+                const pricePer1000 = parseFloat(service.pricePer1000 || service.price || 0);
+                const perUnitPrice = (pricePer1000 / 1000).toFixed(7);
+                document.getElementById('perUnitPriceDisplay').textContent = perUnitPrice;
+               
+                const modal = new bootstrap.Modal(document.getElementById('addServiceModal'));
+                modal.show();
+            } catch (error) {
+                console.error('Error editing service:', error);
+            }
+        }
+
+        async function updateUserBalance() {
+            if (currentUser) {
+                try {
+                    const snapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'users/' + currentUser.username));
+                    if (snapshot.exists()) {
+                        const userData = snapshot.val();
+                        currentUser.balance = userData.balance || 0;
+                        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                        document.getElementById('userBalance').textContent = `৳ ${parseFloat(currentUser.balance).toFixed(2)}`;
+                        updateTopBalance();
+                    }
+                } catch (error) {
+                    console.error('Error updating user balance:', error);
+                }
+            }
+        }
+        
+        function updateTopBalance() {
+            if (currentUser) {
+                document.getElementById('balanceAmount').textContent = parseFloat(currentUser.balance).toFixed(2);
+            }
+        }
+
+        async function loadUserOrders() {
+            if (!currentUser) return;
+           
+            try {
+                const snapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'orders'));
+                if (snapshot.exists()) {
+                    const allOrders = snapshot.val();
+                    const userOrders = Object.values(allOrders).filter(order => order.userId === currentUser.username);
+                   
+                    const userOrdersTable = document.getElementById('userOrdersTable');
+                    userOrdersTable.innerHTML = '';
+                   
+                    userOrders.forEach(order => {
+                        userOrdersTable.innerHTML += `
+                            <tr>
+                                <td>${order.id}</td>
+                                <td>${order.serviceName}</td>
+                                <td class="link-cell">
+                                    ${order.link}
+                                    <span class="copy-link-btn" onclick="copyToClipboard('${order.link}')">
+                                        <i class="fas fa-copy"></i>
+                                    </span>
+                                </td>
+                                <td>${order.quantity}</td>
+                                <td>৳ ${parseFloat(order.total).toFixed(2)}</td>
+                                <td>
+                                    <span class="badge ${order.status === 'completed' ? 'bg-success' : order.status === 'cancelled' ? 'bg-danger' : 'bg-warning'}">
+                                        ${order.status === 'completed' ? 'সম্পন্ন' : order.status === 'cancelled' ? 'বাতিল' : 'পেন্ডিং'}
+                                    </span>
+                                </td>
+                                <td>${new Date(order.orderDate).toLocaleDateString('bn-BD')}</td>
+                            </tr>
+                        `;
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading user orders:', error);
+            }
+        }
+
+        function copyBkashNumber() {
+            navigator.clipboard.writeText('01997631047');
+            showAlert('বিকাশ নাম্বার কপি করা হয়েছে!', 'success');
+        }
+        
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            showAlert('লিংক কপি করা হয়েছে!', 'success');
+        }
+
+        function logout() {
+            currentUser = null;
+            currentAdmin = false;
+            localStorage.removeItem('currentUser');
+            localStorage.removeItem('currentAdmin');
+            location.reload();
+        }
+
+        function showAlert(message, type) {
+            const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert ${alertClass} alert-dismissible fade show position-fixed`;
+            alertDiv.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.appendChild(alertDiv);
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.parentNode.removeChild(alertDiv);
+                }
+            }, 5000);
+        }
+
+        // Admin functions
+        async function deleteCategory(categoryId) {
+            if (confirm('আপনি কি এই ক্যাটাগরিটি ডিলিট করতে চান?')) {
+                try {
+                    // Check if category has services
+                    const servicesSnapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'services'));
+                    let hasServices = false;
+                    if (servicesSnapshot.exists()) {
+                        const allServices = servicesSnapshot.val();
+                        hasServices = Object.values(allServices).some(service => service.categoryId === categoryId);
+                    }
+                    
+                    if (hasServices) {
+                        showAlert('এই ক্যাটাগরিতে সার্ভিস আছে! প্রথমে সার্ভিসগুলো ডিলিট করুন।', 'error');
+                        return;
+                    }
+                    
+                    await window.dbRemove(window.dbRef(window.db, 'categories/' + categoryId));
+                    showAlert('ক্যাটাগরি ডিলিট করা হয়েছে!', 'success');
+                    loadCategoriesForAdmin();
+                    loadCategoriesForDisplay();
+                } catch (error) {
+                    showAlert('ক্যাটাগরি ডিলিট ব্যর্থ!', 'error');
+                }
+            }
+        }
+
+        async function deleteService(serviceId) {
+            if (confirm('আপনি কি এই সার্ভিসটি ডিলিট করতে চান?')) {
+                try {
+                    await window.dbRemove(window.dbRef(window.db, 'services/' + serviceId));
+                    showAlert('সার্ভিস ডিলিট করা হয়েছে!', 'success');
+                    loadServicesForAdmin();
+                } catch (error) {
+                    showAlert('সার্ভিস ডিলিট ব্যর্থ!', 'error');
+                }
+            }
+        }
+
+        async function deleteUser(username) {
+            if (confirm('আপনি কি এই ইউজারটি ডিলিট করতে চান?')) {
+                try {
+                    await window.dbRemove(window.dbRef(window.db, 'users/' + username));
+                    showAlert('ইউজার ডিলিট করা হয়েছে!', 'success');
+                    loadUsers();
+                } catch (error) {
+                    showAlert('ইউজার ডিলিট ব্যর্থ!', 'error');
+                }
+            }
+        }
+
+        async function approvePayment(paymentId) {
+            try {
+                const payment = payments[paymentId];
+               
+                // Update payment status
+                await window.dbUpdate(window.dbRef(window.db, 'payments/' + paymentId), {
+                    status: 'approved'
+                });
+               
+                // Update user balance
+                const userRef = window.dbRef(window.db, 'users/' + payment.userId);
+                const userSnapshot = await window.dbGet(userRef);
+                if (userSnapshot.exists()) {
+                    const user = userSnapshot.val();
+                    const newBalance = (parseFloat(user.balance) || 0) + parseFloat(payment.amount);
+                    await window.dbUpdate(userRef, {
+                        balance: newBalance.toFixed(2)
+                    });
+                   
+                    // If current user is the one who got the payment, update their local balance
+                    if (currentUser && currentUser.username === payment.userId) {
+                        currentUser.balance = newBalance.toFixed(2);
+                        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                        updateUserBalance();
+                        updateTopBalance();
+                    }
+                }
+               
+                showAlert('পেমেন্ট অনুমোদন করা হয়েছে!', 'success');
+                loadPayments();
+            } catch (error) {
+                showAlert('পেমেন্ট অনুমোদন ব্যর্থ!', 'error');
+            }
+        }
+
+        async function rejectPayment(paymentId) {
+            try {
+                await window.dbUpdate(window.dbRef(window.db, 'payments/' + paymentId), {
+                    status: 'rejected'
+                });
+               
+                showAlert('পেমেন্ট বাতিল করা হয়েছে!', 'success');
+                loadPayments();
+            } catch (error) {
+                showAlert('পেমেন্ট বাতিল ব্যর্থ!', 'error');
+            }
+        }
+
+        async function completeOrder(orderId) {
+            try {
+                await window.dbUpdate(window.dbRef(window.db, 'orders/' + orderId), {
+                    status: 'completed'
+                });
+               
+                showAlert('অর্ডার সম্পন্ন হিসেবে চিহ্নিত করা হয়েছে!', 'success');
+                loadOrders();
+                if (currentUser) loadUserOrders();
+            } catch (error) {
+                showAlert('অর্ডার আপডেট ব্যর্থ!', 'error');
+            }
+        }
+
+        async function cancelOrder(orderId) {
+            try {
+                const order = orders[orderId];
+               
+                // Update order status
+                await window.dbUpdate(window.dbRef(window.db, 'orders/' + orderId), {
+                    status: 'cancelled'
+                });
+               
+                // Refund user balance
+                const userRef = window.dbRef(window.db, 'users/' + order.userId);
+                const userSnapshot = await window.dbGet(userRef);
+                if (userSnapshot.exists()) {
+                    const user = userSnapshot.val();
+                    const newBalance = (parseFloat(user.balance) || 0) + parseFloat(order.total);
+                    await window.dbUpdate(userRef, {
+                        balance: newBalance.toFixed(7)
+                    });
+                   
+                    // If current user is the one who got the refund, update their local balance
+                    if (currentUser && currentUser.username === order.userId) {
+                        currentUser.balance = newBalance.toFixed(7);
+                        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                        updateUserBalance();
+                        updateTopBalance();
+                    }
+                }
+               
+                showAlert('অর্ডার বাতিল করা হয়েছে এবং টাকা ফেরত দেওয়া হয়েছে!', 'success');
+                loadOrders();
+                if (currentUser) loadUserOrders();
+            } catch (error) {
+                showAlert('অর্ডার বাতিল ব্যর্থ!', 'error');
+            }
+        }
+    </script>
+</body>
+</html>
