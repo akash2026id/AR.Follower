@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR Follower - SMM PANNEL </title>
+    <title>AR Follow - SMM Pannel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -928,7 +928,10 @@
                     <button class="btn btn-warning me-2" onclick="refreshAdminData()">
                         <i class="fas fa-sync-alt me-1"></i> রিফ্রেশ
                     </button>
-                    <button class="btn btn-danger" onclick="hideAdminPanel()">
+                    <button class="btn btn-danger me-2" onclick="adminLogout()">
+                        <i class="fas fa-sign-out-alt me-1"></i> লগআউট
+                    </button>
+                    <button class="btn btn-secondary" onclick="hideAdminPanel()">
                         <i class="fas fa-times me-1"></i> বন্ধ করুন
                     </button>
                 </div>
@@ -1323,7 +1326,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
         import { getDatabase, ref, set, get, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 
-        // Your web app's Firebase configuration - UPDATED with correct database URL
+        // Your web app's Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAXST6UjzWglLm2acl7YSNp7Dmm7JdXa2I",
             authDomain: "apps-on-club.firebaseapp.com",
@@ -1462,7 +1465,51 @@
     </script>
 
     <script>
-        // Formspree configuration - FIXED with your Formspree ID
+        // SECURITY ENHANCEMENTS - HIDDEN ADMIN CREDENTIALS
+        // SECURITY SYSTEM: Obfuscated admin credentials
+        const SECURITY = (function() {
+            const parts1 = ['ad', 'min', '@', 'gm', 'ail', '.', 'com'];
+            const parts2 = ['AR', 'ad', 'min'];
+            const parts3 = ['0', '1', '9', '9', '7', '6', '3', '1', '0', '4', '7'];
+            
+            return {
+                getAdminEmail: function() {
+                    return parts1.join('');
+                },
+                getAdminPassword: function() {
+                    return parts2.join('');
+                },
+                getBkashNumber: function() {
+                    return parts3.join('');
+                },
+                validateCredentials: function(email, password) {
+                    return email === this.getAdminEmail() && password === this.getAdminPassword();
+                },
+                createSessionToken: function(email) {
+                    const data = {
+                        t: Date.now(),
+                        e: btoa(email),
+                        r: Math.random().toString(36).substring(2, 15),
+                        v: '1.0'
+                    };
+                    return btoa(JSON.stringify(data));
+                },
+                validateSessionToken: function(token) {
+                    try {
+                        const data = JSON.parse(atob(token));
+                        const email = atob(data.e);
+                        const sessionAge = Date.now() - data.t;
+                        const maxAge = 12 * 60 * 60 * 1000; // 12 hours
+                        
+                        return sessionAge < maxAge && email === this.getAdminEmail();
+                    } catch (e) {
+                        return false;
+                    }
+                }
+            };
+        })();
+
+        // Formspree configuration
         const FORMSPREE_ORDER_URL = 'https://formspree.io/f/myzjvenn';
         const FORMSPREE_PAYMENT_URL = 'https://formspree.io/f/myzjvenn';
         
@@ -1477,19 +1524,35 @@
         let payments = [];
         let orders = [];
 
+        // Prevent developer tools
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        document.addEventListener('keydown', function(e) {
+            // Block F12
+            if (e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+            // Block Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+            if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) {
+                e.preventDefault();
+                return false;
+            }
+            if (e.ctrlKey && e.keyCode === 85) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
         // Initialize the app
         document.addEventListener('DOMContentLoaded', function() {
             checkAuthState();
             loadCategories();
             loadServices();
             setupEventListeners();
-            
-            // Update per unit price display when admin adds service
-            document.getElementById('servicePricePer1000').addEventListener('input', function(e) {
-                const pricePer1000 = parseFloat(e.target.value) || 0;
-                const perUnitPrice = (pricePer1000 / 1000).toFixed(7);
-                document.getElementById('perUnitPriceDisplay').textContent = perUnitPrice;
-            });
         });
 
         function setupEventListeners() {
@@ -1517,11 +1580,21 @@
                     helper.innerHTML = 'যেকোনো লিংক দিন (বাংলা বাদে)';
                 }
             });
+            
+            // Update per unit price display when admin adds service
+            const pricePer1000Input = document.getElementById('servicePricePer1000');
+            if (pricePer1000Input) {
+                pricePer1000Input.addEventListener('input', function(e) {
+                    const pricePer1000 = parseFloat(e.target.value) || 0;
+                    const perUnitPrice = (pricePer1000 / 1000).toFixed(7);
+                    document.getElementById('perUnitPriceDisplay').textContent = perUnitPrice;
+                });
+            }
         }
 
         function checkAuthState() {
             const user = JSON.parse(localStorage.getItem('currentUser'));
-            const admin = localStorage.getItem('currentAdmin') === 'true';
+            const adminSession = localStorage.getItem('adminSession');
            
             if (user) {
                 currentUser = user;
@@ -1530,9 +1603,11 @@
                 loadUserOrders();
             }
            
-            if (admin) {
+            if (adminSession && SECURITY.validateSessionToken(adminSession)) {
                 currentAdmin = true;
                 document.getElementById('adminBtn').classList.remove('hidden');
+                document.getElementById('adminBtn').innerHTML = '<i class="fas fa-crown me-1"></i> অ্যাডমিন';
+                document.getElementById('adminBtn').onclick = showAdminPanel;
             }
         }
 
@@ -1541,11 +1616,7 @@
             document.getElementById('loggedInSection').classList.remove('hidden');
             document.getElementById('userWelcome').textContent = `স্বাগতম, ${currentUser.username}`;
             document.getElementById('topBalance').classList.remove('hidden');
-           
-            // Show admin button only if user is admin
-            if (currentUser.isAdmin) {
-                document.getElementById('adminBtn').classList.remove('hidden');
-            }
+            updateTopBalance();
         }
 
         function showHome() {
@@ -1706,6 +1777,10 @@
         }
 
         function showAdminLoginModal() {
+            // Clear any previous values
+            document.getElementById('adminEmail').value = '';
+            document.getElementById('adminPassword').value = '';
+            
             const modal = new bootstrap.Modal(document.getElementById('adminLoginModal'));
             modal.show();
         }
@@ -1745,97 +1820,51 @@
             }
         }
 
-        async function handleLogin(e) {
-            e.preventDefault();
-            const username = document.getElementById('loginUsername').value;
-            const password = document.getElementById('loginPassword').value;
-
-            try {
-                const snapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'users'));
-                if (snapshot.exists()) {
-                    const users = snapshot.val();
-                    const user = Object.values(users).find(u => u.username === username && u.password === password);
-                   
-                    if (user) {
-                        currentUser = user;
-                        localStorage.setItem('currentUser', JSON.stringify(user));
-                       
-                        // Set admin flag if user is admin
-                        if (user.isAdmin) {
-                            currentAdmin = true;
-                            localStorage.setItem('currentAdmin', 'true');
-                            document.getElementById('adminBtn').classList.remove('hidden');
-                        }
-                       
-                        showLoggedInState();
-                        bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
-                        showAlert('লগইন সফল!', 'success');
-                        showHome();
-                    } else {
-                        showAlert('ইউজারনেম বা পাসওয়ার্ড ভুল!', 'error');
-                    }
-                } else {
-                    showAlert('কোন ইউজার খুঁজে পাওয়া যায়নি!', 'error');
-                }
-            } catch (error) {
-                showAlert('লগইন ব্যর্থ!', 'error');
-            }
-        }
-
-        async function handleRegister(e) {
-            e.preventDefault();
-            const username = document.getElementById('regUsername').value;
-            const email = document.getElementById('regEmail').value;
-            const password = document.getElementById('regPassword').value;
-
-            try {
-                // Check if username already exists
-                const snapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'users'));
-                if (snapshot.exists()) {
-                    const users = snapshot.val();
-                    if (users[username]) {
-                        showAlert('এই ইউজারনেমটি ইতিমধ্যে নেওয়া হয়েছে!', 'error');
-                        return;
-                    }
-                }
-
-                const userRef = window.dbRef(window.db, 'users/' + username);
-                await window.dbSet(userRef, {
-                    username: username,
-                    email: email,
-                    password: password,
-                    balance: 0,
-                    isAdmin: false,
-                    joinedDate: new Date().toISOString()
-                });
-
-                bootstrap.Modal.getInstance(document.getElementById('registerModal')).hide();
-                showAlert('রেজিস্ট্রেশন সফল! এখন লগইন করুন।', 'success');
-            } catch (error) {
-                showAlert('রেজিস্ট্রেশন ব্যর্থ!', 'error');
-            }
-        }
-
+        // SECURE ADMIN LOGIN FUNCTION
         function handleAdminLogin(e) {
             e.preventDefault();
             const email = document.getElementById('adminEmail').value;
             const password = document.getElementById('adminPassword').value;
-           
-            if (email === 'admin@gmail.com' && password === 'ARadmin') {
+            
+            if (SECURITY.validateCredentials(email, password)) {
                 currentAdmin = true;
+                const sessionToken = SECURITY.createSessionToken(email);
+                localStorage.setItem('adminSession', sessionToken);
                 localStorage.setItem('currentAdmin', 'true');
+                
                 bootstrap.Modal.getInstance(document.getElementById('adminLoginModal')).hide();
                 document.getElementById('adminBtn').classList.remove('hidden');
+                document.getElementById('adminBtn').innerHTML = '<i class="fas fa-crown me-1"></i> অ্যাডমিন';
+                document.getElementById('adminBtn').onclick = showAdminPanel;
                 showAdminPanel();
                 showAlert('অ্যাডমিন লগইন সফল!', 'success');
             } else {
                 showAlert('ইমেইল বা পাসওয়ার্ড ভুল!', 'error');
+                document.getElementById('adminEmail').value = '';
+                document.getElementById('adminPassword').value = '';
             }
         }
 
         function showAdminPanel() {
+            const adminSession = localStorage.getItem('adminSession');
+            if (!adminSession || !SECURITY.validateSessionToken(adminSession)) {
+                showAlert('সেশন মেয়াদ শেষ! আবার লগইন করুন।', 'error');
+                adminLogout();
+                showAdminLoginModal();
+                return;
+            }
+            
             document.getElementById('adminPanel').classList.remove('hidden');
             loadAdminData();
+        }
+
+        function adminLogout() {
+            localStorage.removeItem('adminSession');
+            localStorage.removeItem('currentAdmin');
+            currentAdmin = false;
+            hideAdminPanel();
+            document.getElementById('adminBtn').classList.add('hidden');
+            showAlert('অ্যাডমিন লগআউট সফল!', 'success');
         }
 
         function hideAdminPanel() {
@@ -2174,7 +2203,7 @@
             }
         }
 
-        // FIXED: Link validation function - accept any link except Bengali
+        // Link validation function
         function validateLink(link) {
             // Trim the link
             link = link.trim();
@@ -2194,7 +2223,7 @@
             return { valid: true, link: link };
         }
 
-        // FIXED: handleOrder function with per-unit calculation
+        // Handle order function
         async function handleOrder(e) {
             e.preventDefault();
             if (!currentUser) {
@@ -2268,7 +2297,7 @@
             }
         }
 
-        // FIXED: Formspree email notification function
+        // Formspree email notification function
         async function sendOrderNotification(orderData) {
             try {
                 const response = await fetch(FORMSPREE_ORDER_URL, {
@@ -2314,7 +2343,7 @@
             }
         }
 
-        // FIXED: handleAddMoney function with Formspree notification
+        // Handle add money function
         async function handleAddMoney(e) {
             e.preventDefault();
             if (!currentUser) {
@@ -2364,7 +2393,7 @@
             }
         }
 
-        // FIXED: Formspree payment notification function
+        // Formspree payment notification function
         async function sendPaymentNotification(paymentData) {
             try {
                 const response = await fetch(FORMSPREE_PAYMENT_URL, {
@@ -2403,6 +2432,81 @@
                 }
             } catch (error) {
                 console.error('Error sending payment notification:', error);
+            }
+        }
+
+        // Handle user login
+        async function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const snapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'users'));
+                if (snapshot.exists()) {
+                    const users = snapshot.val();
+                    const user = Object.values(users).find(u => u.username === username && u.password === password);
+                   
+                    if (user) {
+                        currentUser = user;
+                        localStorage.setItem('currentUser', JSON.stringify(user));
+                       
+                        // Set admin flag if user is admin
+                        if (user.isAdmin) {
+                            const sessionToken = SECURITY.createSessionToken(user.email);
+                            localStorage.setItem('adminSession', sessionToken);
+                            document.getElementById('adminBtn').classList.remove('hidden');
+                            document.getElementById('adminBtn').innerHTML = '<i class="fas fa-crown me-1"></i> অ্যাডমিন';
+                            document.getElementById('adminBtn').onclick = showAdminPanel;
+                        }
+                       
+                        showLoggedInState();
+                        bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
+                        showAlert('লগইন সফল!', 'success');
+                        showHome();
+                    } else {
+                        showAlert('ইউজারনেম বা পাসওয়ার্ড ভুল!', 'error');
+                    }
+                } else {
+                    showAlert('কোন ইউজার খুঁজে পাওয়া যায়নি!', 'error');
+                }
+            } catch (error) {
+                showAlert('লগইন ব্যর্থ!', 'error');
+            }
+        }
+
+        // Handle user registration
+        async function handleRegister(e) {
+            e.preventDefault();
+            const username = document.getElementById('regUsername').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+
+            try {
+                // Check if username already exists
+                const snapshot = await window.dbGet(window.dbChild(window.dbRef(window.db), 'users'));
+                if (snapshot.exists()) {
+                    const users = snapshot.val();
+                    if (users[username]) {
+                        showAlert('এই ইউজারনেমটি ইতিমধ্যে নেওয়া হয়েছে!', 'error');
+                        return;
+                    }
+                }
+
+                const userRef = window.dbRef(window.db, 'users/' + username);
+                await window.dbSet(userRef, {
+                    username: username,
+                    email: email,
+                    password: password,
+                    balance: 0,
+                    isAdmin: false,
+                    joinedDate: new Date().toISOString()
+                });
+
+                bootstrap.Modal.getInstance(document.getElementById('registerModal')).hide();
+                showAlert('রেজিস্ট্রেশন সফল! এখন লগইন করুন।', 'success');
+            } catch (error) {
+                showAlert('রেজিস্ট্রেশন ব্যর্থ!', 'error');
             }
         }
 
@@ -2559,7 +2663,7 @@
         }
 
         function copyBkashNumber() {
-            navigator.clipboard.writeText('01997631047');
+            navigator.clipboard.writeText(SECURITY.getBkashNumber());
             showAlert('বিকাশ নাম্বার কপি করা হয়েছে!', 'success');
         }
         
@@ -2573,6 +2677,7 @@
             currentAdmin = false;
             localStorage.removeItem('currentUser');
             localStorage.removeItem('currentAdmin');
+            localStorage.removeItem('adminSession');
             location.reload();
         }
 
@@ -2743,4 +2848,4 @@
         }
     </script>
 </body>
-</html>
+    </html>
